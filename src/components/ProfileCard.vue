@@ -41,11 +41,11 @@ export default {
     <div class="card__infos">
       <div class="card__infos-item">
         <p>Seguindo</p>
-        <span>{{ followers }}</span>
+        <span>{{ following }}</span>
       </div>
       <div class="card__infos-item">
         <p>Seguidores</p>
-        <span>{{ following }}</span>
+        <span>{{ followers }}</span>
       </div>
       <div class="card__infos-item">
         <p>Repositórios</p>
