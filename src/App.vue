@@ -2,7 +2,7 @@
 import ProfileCard from './components/ProfileCard.vue'
 import LoadingSpinner from './components/LoadingSnipper.vue'
 import BaseButton from './components/BaseButton.vue'
-import { GitHubUserInfo } from './interfaces/User'
+import { GitHubUserResponse } from './interfaces/User'
 import HTTP_STATUS_CODE from './enums/HttpStatusCode'
 
 export default {
@@ -14,7 +14,7 @@ export default {
   },
   data() {
     return {
-      user: {} as GitHubUserInfo,
+      user: {} as GitHubUserResponse,
       inputValue: '',
       hasUser: false,
       isLoading: false,
