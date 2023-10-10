@@ -150,6 +150,6 @@ input:focus {
 
 .button_wrapper {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 </style>
