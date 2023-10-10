@@ -1,4 +1,4 @@
-export interface GitHubUserInfo {
+export interface GitHubUserResponse {
   avatar_url: string
   bio: null
   blog: string
