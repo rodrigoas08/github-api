@@ -17,11 +17,6 @@ export default {
     site: String,
     avatar: String,
     repositorios: Number
-  },
-  methods: {
-    openLink(link: string) {
-      window.open(link, '_blank', 'noopener,noreferrer')
-    }
   }
 }
 </script>
@@ -52,43 +47,41 @@ export default {
         <span>{{ repositorios }}</span>
       </div>
     </div>
-    <div class="card__links">
-      <button @click="openLink(repo_url)">
-        <a>Acessar repositórios</a>
-      </button>
+    <div class="card__link">
+      <router-link :to="{ name: 'repos' }">Acessar repositórios</router-link>
     </div>
   </div>
 </template>
 
 <style scoped>
 .card__wrapper {
-  display: flex;
   gap: 0.5rem;
-  flex-direction: column;
-  align-items: center;
+  display: flex;
+  color: black;
   width: 32.5rem;
   height: 37.5rem;
-  background-color: #0d1631;
+  align-items: center;
+  padding: 1rem 2.5rem;
   border-radius: 1.6rem;
-  color: black;
-  padding: 1rem;
+  flex-direction: column;
+  background-color: #0d1631;
 }
 
 .card__avatar {
-  margin: 0 auto;
-  border-radius: 50%;
   width: 10rem;
   height: 10rem;
+  margin: 0 auto;
+  border-radius: 50%;
 }
 
 .card__profile {
+  width: 90%;
   display: flex;
-  flex-direction: column;
   text-align: left;
+  line-height: 1.6;
   color: #79828c;
   font-size: 1.4rem;
-  width: 90%;
-  line-height: 1.6;
+  flex-direction: column;
   text-overflow: ellipsis;
 }
 
@@ -103,35 +96,35 @@ export default {
 }
 
 .card__profile-bio {
-  margin-top: 0.5rem;
-  white-space: nowrap;
   width: 100%;
   overflow: hidden;
+  margin-top: 0.5rem;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 .card__profile-location svg {
+  top: 0.2rem;
   width: 1.2rem;
   position: relative;
-  top: 0.2rem;
 }
 
 .card__infos {
+  width: 100%;
   display: flex;
-  width: 90%;
+  margin: 0.5rem 0;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
   background-color: #0d1322;
   justify-content: space-between;
-  border-radius: 0.8rem;
-  padding: 1rem 2rem;
-  margin: 0.5rem 0;
 }
 
 .card__infos-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: rgb(240, 248, 255);
   font-size: 1.2rem;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(240, 248, 255);
 }
 
 .card__infos-item > span {
@@ -139,20 +132,21 @@ export default {
   font-weight: bold;
 }
 
-.card__links > button {
-  width: 265px;
-  height: 34px;
+.card__link {
+  width: 100%;
+  display: flex;
+  height: 3.4rem;
   flex-shrink: 0;
-  border-radius: 7px;
-  background-color: #21262d;
-  border: none;
   cursor: pointer;
-  color: rgb(240, 248, 255);
+  align-items: center;
+  border-radius: 0.8rem;
+  justify-content: center;
+  background-color: #21262d;
 }
 
-h2 {
-  font-size: 1.8rem;
-  margin-top: 1rem;
-  color: rgb(255, 255, 255);
+a {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: rgb(240, 248, 255);
 }
 </style>
