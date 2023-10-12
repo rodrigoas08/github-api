@@ -1,10 +1,12 @@
 <script lang="ts">
 import IconLocation from '../components/icons/IconLocalization.vue'
+import BaseButton from '../components/BaseButton.vue'
 
 export default {
   name: 'ProfileCard',
   components: {
-    IconLocation
+    IconLocation,
+    BaseButton
   },
   props: {
     name: String,
@@ -48,7 +50,9 @@ export default {
       </div>
     </div>
     <div class="card__link">
-      <router-link :to="{ name: 'repos' }">Acessar repositórios</router-link>
+      <router-link :to="{ name: 'repos' }">
+        <BaseButton text="Listar repositórios"></BaseButton>
+      </router-link>
     </div>
   </div>
 </template>
@@ -132,7 +136,7 @@ export default {
   font-weight: bold;
 }
 
-.card__link {
+.card__link,a {
   width: 100%;
   display: flex;
   height: 3.4rem;
@@ -140,13 +144,12 @@ export default {
   cursor: pointer;
   align-items: center;
   border-radius: 0.8rem;
+  text-decoration: none;
   justify-content: center;
-  background-color: #21262d;
 }
 
-a {
+/* a {
   font-size: 1.4rem;
-  text-decoration: none;
   color: rgb(240, 248, 255);
-}
+} */
 </style>
