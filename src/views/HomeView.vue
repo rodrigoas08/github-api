@@ -26,13 +26,14 @@ export default {
     }
   },
   methods: {
-    async getUserProfile(userName: string): Promise<void> {
+    async fetchUserProfile(userName: string): Promise<void> {
       if (this.inputValue === '') {
         this.warningText = 'Por favor, digite um nome de usuário'
         return
       } else {
         this.warningText = ''
         this.isLoading = true
+        this.user = {}
         const response = await fetch(`https://api.github.com/users/${userName}`)
         const data = await response.json()
         profileStore.updateProfile(data)
@@ -87,7 +88,7 @@ export default {
         @keyup.enter="getUserProfile(inputValue)"
       />
       <div class="button_wrapper">
-        <BaseButton text="Buscar" @handleFunction="getUserProfile(inputValue)" />
+        <BaseButton text="Buscar" @handleFunction="fetchUserProfile(inputValue)" />
         <BaseButton text="Limpar" @handleFunction="clearInput" />
       </div>
     </div>
@@ -149,7 +150,7 @@ input {
   border: 1px solid transparent;
   outline: none;
   padding: 0.5rem 1.5rem;
-  border-radius: 1.6rem;
+  border-radius: 0.8rem;
 }
 
 input:focus {
