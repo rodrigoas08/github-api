@@ -104,24 +104,22 @@ export default {
   flex-wrap: wrap;
   overflow-y: auto;
   position: relative;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 }
+
 .cards__repo {
   gap: 1rem;
+  flex-grow: 0;
+  width: 25rem;
+  display: flex;
   height: 16rem;
   padding: 1rem;
-  display: flex;
-  flex-shrink: 0;
-  width: 24.625rem;
+  flex-basis: 25rem;
   border-radius: 1rem;
   flex-direction: column;
   background-color: #0d1631;
   justify-content: space-between;
   box-shadow: 0.1rem 0.2rem 0.8rem #000;
-}
-
-.cards__repo:hover {
-  transform: scale(1.01);
 }
 
 .cards__repo-name,
