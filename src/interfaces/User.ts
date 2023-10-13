@@ -5,7 +5,7 @@ export interface ProfileResponse {
   following?: number
   id: number
   location?: string
-  login?: string
+  login: string
   name?: string
   public_repos?: number
 }

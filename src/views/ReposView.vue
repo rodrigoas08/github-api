@@ -25,8 +25,9 @@ export default {
     IconStar
   },
   data() {
+    const reposUser: any = InitialRepos
     return {
-      reposUser: InitialRepos,
+      reposUser,
       user: profileStore.getProfile,
       isLoading: false
     }
@@ -56,12 +57,12 @@ export default {
 <template>
   <div class="header">
     <router-link :to="{ name: 'home' }">&#8617; Voltar</router-link>
-    <h1 v-show="!this.isLoading">{{ this.user.name ? this.user.name : this.user.login }}</h1>
+    <h1 v-show="!isLoading">{{ user.name ? user.name : user.login }}</h1>
   </div>
 
-  <LoadingSpinner v-if="this.isLoading" />
-  <div class="cards__wrapper" v-if="this.reposUser && !this.isLoading">
-    <div class="cards__repo" v-for="repos in this.reposUser" :key="repos.id">
+  <LoadingSpinner v-if="isLoading" />
+  <div class="cards__wrapper" v-if="reposUser && !isLoading">
+    <div class="cards__repo" v-for="repos in reposUser" :key="repos.id">
       <p class="cards__repo-name"><IconRepo /> {{ repos.name }}</p>
       <p class="cards__repo-bio" v-if="repos.description" :title="repos.description">
         {{ repos.description }}
