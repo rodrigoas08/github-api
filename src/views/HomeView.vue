@@ -5,6 +5,7 @@ import BaseButton from '../components/BaseButton.vue'
 import HTTP_STATUS_CODE from '../enums/HttpStatusCode'
 import { useProfileStore } from '../stores/ProfileStore'
 import { setActivePinia, createPinia } from 'pinia'
+import { GitHubUserResponse } from '../interfaces/User'
 
 const pinia = createPinia()
 setActivePinia(pinia)
@@ -33,7 +34,7 @@ export default {
       } else {
         this.warningText = ''
         this.isLoading = true
-        this.user = {}
+        this.user = {} as GitHubUserResponse
         // const response = await profileStore.fetchUserProfile(userName)
         const response = await fetch(`https://api.github.com/users/${userName}`)
         const data = await response.json()
@@ -49,7 +50,7 @@ export default {
             case HTTP_STATUS_CODE.UNAUTHORIZED:
             case HTTP_STATUS_CODE.FORBIDDEN:
               this.warningText = 'Busca não autorizada, tente novamente mais tarde.'
-              this.user = {}
+              this.user = {} as GitHubUserResponse
               this.hasUser = false
               this.isLoading = false
               break
@@ -86,7 +87,7 @@ export default {
         id="search"
         placeholder="Digite um nome de usuário"
         v-model="inputValue"
-        @keyup.enter="getUserProfile(inputValue)"
+        @keyup.enter="fetchUserProfile(inputValue)"
       />
       <div class="button_wrapper">
         <BaseButton text="Buscar" @handleFunction="fetchUserProfile(inputValue)" />
