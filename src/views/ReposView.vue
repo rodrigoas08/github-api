@@ -119,6 +119,10 @@ export default {
   box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
+.cards__repo:hover{
+  transform: scale(1.01);
+}
+
 .cards__repo-name,
 .cards__repo-bio {
   width: 100%;

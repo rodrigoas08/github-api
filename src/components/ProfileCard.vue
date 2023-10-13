@@ -25,13 +25,13 @@ export default {
 
 <template>
   <div class="card__wrapper">
-    <img class="card__avatar" :src="avatar" />
+    <img class="card__avatar" :src="avatar" alt="avatar"/>
     <div class="card__profile">
       <div>
         <p class="card__profile-name">{{ name }}</p>
         <p class="card__profile-login">{{ login }}</p>
       </div>
-      <p class="card__profile-bio">{{ bio }}</p>
+      <p class="card__profile-bio" :title="bio">{{ bio }}</p>
       <p class="card__profile-location">
         <IconLocation />
         {{ location }}
