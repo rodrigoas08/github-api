@@ -5,7 +5,7 @@ import BaseButton from '../components/BaseButton.vue'
 import HTTP_STATUS_CODE from '../enums/HttpStatusCode'
 import { useProfileStore } from '../stores/ProfileStore'
 import { setActivePinia, createPinia } from 'pinia'
-import { GitHubUserResponse } from '../interfaces/User'
+import type { GitHubUserResponse } from '../interfaces/User'
 
 const pinia = createPinia()
 setActivePinia(pinia)
@@ -56,7 +56,7 @@ export default {
               break
             case HTTP_STATUS_CODE.NOT_FOUND:
               this.warningText = 'Usuário não encontrado.'
-              this.user = {}
+              this.user = {} as GitHubUserResponse
               this.hasUser = false
               this.isLoading = false
               break
