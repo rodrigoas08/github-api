@@ -31,3 +31,12 @@ export interface GitHubUserResponse {
   updated_at: string
   url: string
 }
+
+export interface RepositoryResponse {
+  id: number | null
+  name: string
+  description: string
+  language: string
+  stargazers_count: number | null
+  html_url: string
+}

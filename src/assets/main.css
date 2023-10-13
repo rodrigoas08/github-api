@@ -9,4 +9,9 @@
   border-radius: 1.6rem;
   background-color: #1f2a48;
   grid-template-rows: 0.3fr 1fr;
+  box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.212);
+}
+
+a:visited {
+  color: var(--color-text);
 }

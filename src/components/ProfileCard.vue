@@ -1,10 +1,12 @@
 <script lang="ts">
 import IconLocation from '../components/icons/IconLocalization.vue'
+import BaseButton from '../components/BaseButton.vue'
 
 export default {
   name: 'ProfileCard',
   components: {
-    IconLocation
+    IconLocation,
+    BaseButton
   },
   props: {
     name: String,
@@ -17,22 +19,19 @@ export default {
     site: String,
     avatar: String,
     repositorios: Number
-  },
-  methods: {
-    openLink(link: string) {
-      window.open(link, '_blank', 'noopener,noreferrer')
-    }
   }
 }
 </script>
 
 <template>
   <div class="card__wrapper">
-    <img class="card__avatar" :src="avatar" />
+    <img class="card__avatar" :src="avatar" alt="avatar"/>
     <div class="card__profile">
-      <p class="card__profile-name">{{ name }}</p>
-      <p class="card__profile-login">{{ login }}</p>
-      <p class="card__profile-bio">{{ bio }}</p>
+      <div>
+        <p class="card__profile-name">{{ name }}</p>
+        <p class="card__profile-login">{{ login }}</p>
+      </div>
+      <p class="card__profile-bio" :title="bio">{{ bio }}</p>
       <p class="card__profile-location">
         <IconLocation />
         {{ location }}
@@ -52,107 +51,95 @@ export default {
         <span>{{ repositorios }}</span>
       </div>
     </div>
-    <div class="card__links">
-      <button @click="openLink(repo_url)">
-        <a>Acessar repositórios</a>
-      </button>
+    <div class="card__link">
+      <router-link :to="{ name: 'repos' }">
+        <BaseButton text="Listar repositórios"></BaseButton>
+      </router-link>
     </div>
   </div>
 </template>
 
 <style scoped>
 .card__wrapper {
+  gap: 1rem;
   display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
-  align-items: center;
+  padding: 1rem 2rem;
+  color: black;
   width: 32.5rem;
   height: 37.5rem;
-  background-color: #0d1631;
   border-radius: 1.6rem;
-  color: black;
-  padding: 1rem;
+  flex-direction: column;
+  background-color: #0d1631;
+  box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
 .card__avatar {
-  margin: 0 auto;
-  border-radius: 50%;
   width: 10rem;
   height: 10rem;
+  margin: 0 auto;
+  border-radius: 50%;
 }
 
 .card__profile {
+  width: 100%;
+  gap: 0.5rem;
   display: flex;
-  flex-direction: column;
   text-align: left;
   color: #79828c;
   font-size: 1.4rem;
-  width: 90%;
-  line-height: 1.6;
-  text-overflow: ellipsis;
+  flex-direction: column;
 }
 
 .card__profile-name {
   font-weight: bold;
+  font-size: 1.6rem;
   color: rgb(240, 248, 255);
 }
 
-.card__profile-name,
-.card__profile-login {
-  text-align: center;
-}
-
 .card__profile-bio {
-  margin-top: 0.5rem;
-  white-space: nowrap;
-  width: 100%;
+  width: 90%;
+  max-height: 6rem;
   overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4;
+  word-break: break-word;
+  color: rgb(240, 248, 255);
 }
 
 .card__profile-location svg {
+  top: 0.2rem;
   width: 1.2rem;
   position: relative;
-  top: 0.2rem;
 }
 
 .card__infos {
+  width: 100%;
   display: flex;
-  width: 90%;
+  padding: 0.5rem 2rem;
+  border-radius: 0.8rem;
   background-color: #0d1322;
   justify-content: space-between;
-  border-radius: 0.8rem;
-  padding: 1rem 2rem;
-  margin: 0.5rem 0;
 }
 
 .card__infos-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: rgb(240, 248, 255);
   font-size: 1.2rem;
+  align-items: center;
+  flex-direction: column;
+  color: rgb(240, 248, 255);
 }
 
 .card__infos-item > span {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
-.card__links > button {
-  width: 265px;
-  height: 34px;
+.card__link,
+a {
+  width: 100%;
+  height: 3.4rem;
   flex-shrink: 0;
-  border-radius: 7px;
-  background-color: #21262d;
-  border: none;
   cursor: pointer;
-  color: rgb(240, 248, 255);
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-top: 1rem;
-  color: rgb(255, 255, 255);
+  border-radius: 0.8rem;
+  text-decoration: none;
 }
 </style>

@@ -14,15 +14,15 @@ export default {
 
 <style scoped>
 button {
+  width: 100%;
   height: 3.5rem;
   color: white;
   cursor: pointer;
-  background-color: transparent;
-
-  background-color: #027afd;
+  border-radius: 0.8rem;
   padding: 0.5rem 1.5rem;
+  background-color: #027afd;
   border: 1px solid #2c3e50;
-  border-radius: 1.6rem;
+  box-shadow: 0.1rem 0.4rem 0.8rem rgba(0, 0, 0, 0.412);
 }
 
 button:hover {
