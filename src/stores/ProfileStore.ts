@@ -18,7 +18,7 @@ export const useProfileStore = defineStore({
       const profileData = response.json()
       return profileData
     },
-    updateUserRepos(reposData: any) {
+    updateUserRepos(reposData: RepositoryResponse) {
       this.repos = reposData
     },
     async fetchUserRepos(string: string) {
@@ -31,7 +31,7 @@ export const useProfileStore = defineStore({
     getProfile(): GitHubUserResponse {
       return this.profile
     },
-    getRepos(): Object {
+    getRepos(): RepositoryResponse {
       return this.repos
     }
   }
