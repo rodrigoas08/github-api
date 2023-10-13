@@ -34,6 +34,7 @@ export default {
         this.warningText = ''
         this.isLoading = true
         this.user = {}
+        // const response = await profileStore.fetchUserProfile(userName)
         const response = await fetch(`https://api.github.com/users/${userName}`)
         const data = await response.json()
         profileStore.updateProfile(data)
@@ -124,8 +125,10 @@ export default {
 }
 
 h1 {
+  color: #027afd;
   font-size: 2.8rem;
   text-transform: uppercase;
+  text-shadow: 0.1rem 0.4rem 0.3rem #000;
 }
 
 .search__wrapper {

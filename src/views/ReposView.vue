@@ -3,6 +3,8 @@ import { useProfileStore } from '../stores/ProfileStore'
 import BaseButton from '../components/BaseButton.vue'
 import LoadingSpinner from '../components/LoadingSnipper.vue'
 import type { RepositoryResponse } from '../interfaces/User'
+import IconRepo from '../components/icons/IconRepo.vue'
+import IconStar from '../components/icons/IconStar.vue'
 
 const profileStore = useProfileStore()
 
@@ -18,7 +20,9 @@ const InitialRepos: RepositoryResponse = {
 export default {
   components: {
     BaseButton,
-    LoadingSpinner
+    LoadingSpinner,
+    IconRepo,
+    IconStar
   },
   data() {
     return {
@@ -30,7 +34,7 @@ export default {
   methods: {
     async getRepos(): Promise<void> {
       this.isLoading = true
-      console.log('login', profileStore.getProfile.login)
+      // console.log('login', profileStore.getProfile.login)
       const reposData = await profileStore.fetchUserRepos(profileStore.getProfile.login)
       profileStore.updateUserRepos(reposData)
       this.reposUser = profileStore.getRepos
@@ -43,7 +47,7 @@ export default {
     }
   },
   created() {
-    console.log(profileStore.getProfile)
+    // console.log(profileStore.getProfile)
     this.getRepos()
   }
 }
@@ -58,13 +62,13 @@ export default {
   <LoadingSpinner v-if="this.isLoading" />
   <div class="cards__wrapper" v-if="this.reposUser && !this.isLoading">
     <div class="cards__repo" v-for="repos in this.reposUser" :key="repos.id">
-      <p class="cards__repo-name">{{ repos.name }}</p>
+      <p class="cards__repo-name"><IconRepo /> {{ repos.name }}</p>
       <p class="cards__repo-bio" v-if="repos.description" :title="repos.description">
         {{ repos.description }}
       </p>
-      <div style="display: flex; gap: 1rem; font-size: 1.2rem">
+      <div style="display: flex; gap: 2rem; font-size: 1.2rem">
         <p class="cards__repo-language" v-if="repos.language">{{ repos.language }}</p>
-        <p class="cards__repo-stars">{{ repos.stargazers_count }} stars</p>
+        <p class="cards__repo-stars"><IconStar /> {{ repos.stargazers_count }}</p>
       </div>
       <BaseButton text="Acessar repositório" @handleFunction="openLink(repos.html_url)" />
     </div>
@@ -73,33 +77,46 @@ export default {
 
 <style scoped>
 .header {
-  display: grid;
-  grid-template-rows: 0.2fr 1fr;
   height: 100%;
+  display: grid;
+  padding: 0 2rem;
+  grid-template-rows: 0.2fr 1fr;
 }
+
+.header a {
+  text-shadow: 0.1rem 0.4rem 0.3rem #000;
+}
+
+.header h1 {
+  color: rgb(240, 248, 255);
+  align-self: center;
+  text-shadow: 0.1rem 0.4rem 0.3rem #000;
+}
+
 .cards__wrapper {
-  display: flex;
-  padding: 2rem;
-  gap: 1rem;
-  margin: 0 auto;
-  position: relative;
-  overflow-y: auto;
+  gap: 2rem;
   width: 100%;
   height: 100%;
-  justify-content: flex-start;
+  padding: 2rem;
+  display: flex;
+  margin: 0 auto;
   flex-wrap: wrap;
+  overflow-y: auto;
+  position: relative;
+  justify-content: flex-start;
 }
 .cards__repo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24.625rem;
-  height: 16rem;
-  flex-shrink: 0;
-  border-radius: 1rem;
-  background: #0d1631;
-  padding: 1rem;
   gap: 1rem;
+  height: 16rem;
+  padding: 1rem;
+  display: flex;
+  flex-shrink: 0;
+  width: 24.625rem;
+  border-radius: 1rem;
+  flex-direction: column;
+  background-color: #0d1631;
+  justify-content: space-between;
+  box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
 .cards__repo-name,
@@ -112,20 +129,41 @@ export default {
 
 .cards__repo-name {
   font-weight: bold;
-  color: white;
+  color: #027afd;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
+.cards__repo-name svg {
+  margin-right: 0.4rem;
+}
+
 .cards__repo-stars {
-  color: rgb(253, 253, 167);
+  gap: 0.5rem;
+  display: flex;
+  height: 1.4rem;
+  color: #027afd;
+  font-weight: bold;
+  font-size: 1.4rem;
+  align-items: center;
 }
 
 a {
-  /* position: relative;
-  top: -3rem; */
   font-size: 1.4rem;
   text-decoration: none;
   color: rgb(240, 248, 255);
+}
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #027afd;
+  border-radius: 0.8rem;
 }
 </style>

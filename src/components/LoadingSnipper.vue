@@ -34,6 +34,10 @@ div {
   justify-content: center;
 }
 
+p {
+  text-shadow: 0.1rem 0.4rem 0.3rem #000;
+}
+
 @keyframes ldio-5z6n4r4ovj8 {
   0% {
     opacity: 1;
@@ -51,6 +55,7 @@ div {
   height: 24px;
   border-radius: 6px / 12px;
   transform-origin: 6px 52px;
+  box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 .ldio-5z6n4r4ovj8 div:nth-child(1) {
   transform: rotate(0deg);

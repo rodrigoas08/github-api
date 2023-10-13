@@ -27,8 +27,10 @@ export default {
   <div class="card__wrapper">
     <img class="card__avatar" :src="avatar" />
     <div class="card__profile">
-      <p class="card__profile-name">{{ name }}</p>
-      <p class="card__profile-login">{{ login }}</p>
+      <div>
+        <p class="card__profile-name">{{ name }}</p>
+        <p class="card__profile-login">{{ login }}</p>
+      </div>
       <p class="card__profile-bio">{{ bio }}</p>
       <p class="card__profile-location">
         <IconLocation />
@@ -59,16 +61,16 @@ export default {
 
 <style scoped>
 .card__wrapper {
-  gap: 0.5rem;
+  gap: 1rem;
   display: flex;
+  padding: 1rem 2rem;
   color: black;
   width: 32.5rem;
   height: 37.5rem;
-  align-items: center;
-  padding: 1rem 2.5rem;
   border-radius: 1.6rem;
   flex-direction: column;
   background-color: #0d1631;
+  box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
 .card__avatar {
@@ -79,32 +81,28 @@ export default {
 }
 
 .card__profile {
-  width: 90%;
+  width: 100%;
+  gap: 0.5rem;
   display: flex;
   text-align: left;
-  line-height: 1.6;
   color: #79828c;
   font-size: 1.4rem;
   flex-direction: column;
-  text-overflow: ellipsis;
 }
 
 .card__profile-name {
   font-weight: bold;
+  font-size: 1.6rem;
   color: rgb(240, 248, 255);
 }
 
-.card__profile-name,
-.card__profile-login {
-  text-align: center;
-}
-
 .card__profile-bio {
-  width: 100%;
+  width: 90%;
+  max-height: 6rem;
   overflow: hidden;
-  margin-top: 0.5rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  line-height: 1.4;
+  word-break: break-word;
+  color: rgb(240, 248, 255);
 }
 
 .card__profile-location svg {
@@ -116,8 +114,7 @@ export default {
 .card__infos {
   width: 100%;
   display: flex;
-  margin: 0.5rem 0;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   border-radius: 0.8rem;
   background-color: #0d1322;
   justify-content: space-between;
@@ -132,24 +129,17 @@ export default {
 }
 
 .card__infos-item > span {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
-.card__link,a {
+.card__link,
+a {
   width: 100%;
-  display: flex;
   height: 3.4rem;
   flex-shrink: 0;
   cursor: pointer;
-  align-items: center;
   border-radius: 0.8rem;
   text-decoration: none;
-  justify-content: center;
 }
-
-/* a {
-  font-size: 1.4rem;
-  color: rgb(240, 248, 255);
-} */
 </style>
