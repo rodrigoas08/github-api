@@ -2,12 +2,12 @@ export interface ProfileResponse {
   avatar_url?: string
   bio?: string
   followers?: number
-  following?: number | null
+  following?: number
   id: number
   location?: string
   login?: string
   name?: string
-  public_repos?: number | null
+  public_repos?: number
 }
 
 export type InitialProfile = {
