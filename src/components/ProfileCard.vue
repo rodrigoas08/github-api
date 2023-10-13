@@ -9,23 +9,21 @@ export default {
     BaseButton
   },
   props: {
-    name: String,
-    login: String,
-    bio: String,
-    followers: Number,
-    following: Number,
-    location: String,
-    repo_url: String,
-    site: String,
-    avatar: String,
-    repositorios: Number
+    name: { type: String, default: '' },
+    login: { type: String, default: '' },
+    bio: { type: String, default: '' },
+    followers: { type: Number, default: null },
+    following: { type: Number, default: null },
+    location: { type: String, default: '' },
+    avatar: { type: String, default: '' },
+    repositories: { type: Number, default: null }
   }
 }
 </script>
 
 <template>
   <div class="card__wrapper">
-    <img class="card__avatar" :src="avatar" alt="avatar"/>
+    <img class="card__avatar" :src="avatar" alt="avatar" />
     <div class="card__profile">
       <div>
         <p class="card__profile-name">{{ name }}</p>
@@ -48,7 +46,7 @@ export default {
       </div>
       <div class="card__infos-item">
         <p>Repositórios</p>
-        <span>{{ repositorios }}</span>
+        <span>{{ repositories }}</span>
       </div>
     </div>
     <div class="card__link">
