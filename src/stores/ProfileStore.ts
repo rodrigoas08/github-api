@@ -1,16 +1,16 @@
-import type { GitHubUserResponse, RepositoryResponse } from '@/interfaces/User'
+import type { ProfileResponse, RepositoryResponse } from '@/interfaces/User'
 import { defineStore } from 'pinia'
 
 export const useProfileStore = defineStore({
   id: 'profile',
   state: () => {
     return {
-      profile: {} as GitHubUserResponse,
+      profile: {} as ProfileResponse,
       repos: {} as RepositoryResponse
     }
   },
   actions: {
-    updateProfile(profileData: GitHubUserResponse) {
+    updateProfile(profileData: ProfileResponse) {
       this.profile = profileData
     },
     async fetchUserProfile(string: string) {
@@ -28,7 +28,7 @@ export const useProfileStore = defineStore({
     }
   },
   getters: {
-    getProfile(): GitHubUserResponse {
+    getProfile(): ProfileResponse {
       return this.profile
     },
     getRepos(): RepositoryResponse {
