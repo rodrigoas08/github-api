@@ -8,13 +8,13 @@ import IconStar from '../components/icons/IconStar.vue'
 
 const profileStore = useProfileStore()
 
-const InitialRepos: RepositoryResponse = {
+const initialRepository: RepositoryResponse = {
   description: '',
   html_url: '',
-  id: null,
+  id: 0,
   language: '',
   name: '',
-  stargazers_count: null
+  stargazers_count: 0
 }
 
 export default {
@@ -25,7 +25,7 @@ export default {
     IconStar
   },
   data() {
-    const reposUser: any = InitialRepos
+    const reposUser: any = initialRepository
     return {
       reposUser,
       user: profileStore.getProfile,
@@ -35,7 +35,6 @@ export default {
   methods: {
     async getRepos(): Promise<void> {
       this.isLoading = true
-      // console.log('login', profileStore.getProfile.login)
       const reposData = await profileStore.fetchUserRepos(profileStore.getProfile.login)
       profileStore.updateUserRepos(reposData)
       this.reposUser = profileStore.getRepos
@@ -45,10 +44,15 @@ export default {
     },
     openLink(url: string) {
       window.open(url, '_blank', 'noopener')
+    },
+    listRepositoryByStars<T extends RepositoryResponse>(): T[] {
+      const list = this.reposUser.sort((a: any, b: any) => {
+        return b.stargazers_count - a.stargazers_count
+      })
+      return list
     }
   },
   created() {
-    // console.log(profileStore.getProfile)
     this.getRepos()
   }
 }
@@ -62,7 +66,7 @@ export default {
 
   <LoadingSpinner v-if="isLoading" />
   <div class="cards__wrapper" v-if="reposUser && !isLoading">
-    <div class="cards__repo" v-for="repos in reposUser" :key="repos.id">
+    <div class="cards__repo" v-for="repos in listRepositoryByStars()" :key="repos.id">
       <p class="cards__repo-name"><IconRepo /> {{ repos.name }}</p>
       <p class="cards__repo-bio" v-if="repos.description" :title="repos.description">
         {{ repos.description }}
@@ -104,7 +108,7 @@ export default {
   flex-wrap: wrap;
   overflow-y: auto;
   position: relative;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .cards__repo {
