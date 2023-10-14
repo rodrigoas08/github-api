@@ -15,15 +15,15 @@ export const useProfileStore = defineStore({
     },
     async fetchUserProfile(string: string) {
       const response = await fetch(`https://api.github.com/users/${string}`)
-      const profileData = response.json()
-      return profileData
+      const profileData = await response.json()
+      return { profileData, response }
     },
     updateUserRepos(reposData: RepositoryResponse) {
       this.repos = reposData
     },
     async fetchUserRepos(string: string) {
       const response = await fetch(`https://api.github.com/users/${string}/repos`)
-      const reposData = response.json()
+      const reposData = await response.json()
       return reposData
     }
   },
