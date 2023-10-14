@@ -35,10 +35,8 @@ export default {
         this.warningText = ''
         this.isLoading = true
         this.user = {} as ProfileResponse
-        // const response = await profileStore.fetchUserProfile(userName)
-        const response = await fetch(`https://api.github.com/users/${userName}`)
-        const data = await response.json()
-        profileStore.updateProfile(data)
+        const { profileData, response } = await profileStore.fetchUserProfile(userName)
+        profileStore.updateProfile(profileData)
         setTimeout(() => {
           switch (response.status) {
             case HTTP_STATUS_CODE.OK:
