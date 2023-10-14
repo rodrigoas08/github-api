@@ -76,6 +76,7 @@ export default {
   height: 10rem;
   margin: 0 auto;
   border-radius: 50%;
+  box-shadow: 0.1rem 0.1rem 0.9rem #000;
 }
 
 .card__profile {
