@@ -135,10 +135,15 @@ export default {
 }
 
 .cards__repo-name {
-  font-weight: bold;
   color: #027afd;
+  font-weight: bold;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.cards__repo-name svg {
+  top: 0.2rem;
+  position: relative;
 }
 
 .cards__repo-name svg {
@@ -170,7 +175,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #027afd;
   border-radius: 0.8rem;
+  background-color: #027afd;
 }
 </style>
