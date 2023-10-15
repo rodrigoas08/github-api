@@ -97,22 +97,21 @@ export default {
 }
 
 .cards__wrapper {
-  gap: 2rem;
+  row-gap: 2rem;
   width: 100%;
   height: 100%;
-  padding: 1rem;
   display: flex;
-  margin: 0 auto;
   flex-wrap: wrap;
   overflow-y: auto;
-  overflow-x: hidden;
+  padding-top: 1rem;
   position: relative;
+  overflow-x: hidden;
   justify-content: center;
 }
 
 .cards__repo {
+  width: 94%;
   gap: 0.5rem;
-  width: 25rem;
   display: flex;
   height: 20rem;
   padding: 1rem;
@@ -206,8 +205,8 @@ a {
   }
 
   .card__repo-name {
-  font-size: 1.8rem;
-}
+    font-size: 1.8rem;
+  }
 
   .card_repo-footer {
     font-size: 1.6rem;
