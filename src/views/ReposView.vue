@@ -114,7 +114,7 @@ export default {
   gap: 0.5rem;
   width: 25rem;
   display: flex;
-  height: 16rem;
+  height: 20rem;
   padding: 1rem;
   overflow: hidden;
   white-space: nowrap;
@@ -127,15 +127,15 @@ export default {
 
 .card__repo-name,
 .card__repo-bio {
+  overflow: hidden;
   font-size: 1.2rem;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .card__repo-name {
-  font-size: 1.4rem;
   color: #027afd;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
@@ -200,8 +200,8 @@ a {
 
   .card__repo-name,
   .card__repo-bio {
-    white-space: wrap;
     overflow: hidden;
+    white-space: wrap;
     font-size: 1.4rem;
   }
 
