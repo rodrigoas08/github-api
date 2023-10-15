@@ -15,7 +15,7 @@ export default {
 <style scoped>
 button {
   width: 100%;
-  height: 3.5rem;
+  height: 4rem;
   color: white;
   cursor: pointer;
   margin-bottom: 1rem;
