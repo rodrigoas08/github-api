@@ -138,14 +138,15 @@ h1 {
 input {
   width: 100%;
   outline: none;
-  height: 3.5rem;
-  font-size: 1.2rem;
+  height: 3.7rem;
+  font-size: 1.6rem;
   padding: 0.5rem 1.5rem;
   border-radius: 0.8rem;
-  border: 1px solid transparent;
+  border: 0.2rem solid transparent;
 }
 
 input:focus {
+  font-size: 1.6rem;
   border: 0.2rem solid #027afd;
 }
 
