@@ -1,10 +1,10 @@
 @import './base.css';
 
 #app {
-  width: 87rem;
+  width: 87vw;
   padding: 1rem;
   display: grid;
-  height: 53.5rem;
+  height: 90vh;
   font-weight: normal;
   border-radius: 1.6rem;
   background-color: #1f2a48;

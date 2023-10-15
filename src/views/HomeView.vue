@@ -4,11 +4,11 @@ import LoadingSpinner from '../components/LoadingSnipper.vue'
 import BaseButton from '../components/BaseButton.vue'
 import HTTP_STATUS_CODE from '../enums/HttpStatusCode'
 import { useProfileStore } from '../stores/ProfileStore'
-import { setActivePinia, createPinia } from 'pinia'
+// import { setActivePinia, createPinia } from 'pinia'
 import type { ProfileResponse } from '../interfaces/User'
 
-const pinia = createPinia()
-setActivePinia(pinia)
+// const pinia = createPinia()
+// setActivePinia(pinia)
 const profileStore = useProfileStore()
 
 export default {
@@ -95,7 +95,7 @@ export default {
   </div>
 
   <div class="search__result">
-    <h2>{{ warningText }}</h2>
+    <h2 v-if="warningText">{{ warningText }}</h2>
     <LoadingSpinner v-if="isLoading" />
     <ProfileCard
       v-if="hasUser && !isLoading"
@@ -113,18 +113,17 @@ export default {
 
 <style scoped>
 .wrapper {
-  width: 100%;
+  gap: 1rem;
   height: 100%;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 h1 {
   color: #027afd;
-  font-size: 2.8rem;
+  font-size: 1.8rem;
+  text-align: center;
   text-transform: uppercase;
   text-shadow: 0.1rem 0.4rem 0.3rem #000;
 }
@@ -133,8 +132,27 @@ h1 {
   gap: 1rem;
   width: 100%;
   display: flex;
-  align-items: baseline;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  height: 3.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.8rem;
+  border: 1px solid transparent;
+}
+
+input:focus {
+  border: 0.2rem solid #027afd;
+}
+
+.button_wrapper {
+  gap: 1rem;
+  width: 100%;
+  display: flex;
 }
 
 .search__result {
@@ -145,21 +163,39 @@ h1 {
   align-items: center;
 }
 
-input {
-  width: 50%;
-  height: 3.5rem;
-  border: 1px solid transparent;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.8rem;
+h2 {
+  width: 80%;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
-input:focus {
-  border: 1px solid #21262d;
-}
+/*RESPONSIVIDADE*/
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    gap: 2rem;
+  }
 
-.button_wrapper {
-  display: flex;
-  gap: 1rem;
+  h1 {
+    font-size: 3.8rem;
+  }
+
+  .search__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  .button_wrapper {
+    width: 50%;
+  }
+
+  h2 {
+    width: 100%;
+    font-size: 2.4rem;
+  }
 }
 </style>

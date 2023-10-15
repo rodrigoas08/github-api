@@ -59,21 +59,21 @@ export default {
 
 <style scoped>
 .card__wrapper {
-  gap: 1rem;
+  gap: 1.5rem;
+  width: 80vw;
+  height: auto;
   display: flex;
-  padding: 1rem 2rem;
   color: black;
-  width: 32.5rem;
-  height: 37.5rem;
-  border-radius: 1.6rem;
+  padding: 1rem 1rem;
+  border-radius: 0.8rem;
   flex-direction: column;
   background-color: #0d1631;
   box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
 .card__avatar {
-  width: 10rem;
-  height: 10rem;
+  width: 7rem;
+  height: 7rem;
   margin: 0 auto;
   border-radius: 50%;
   box-shadow: 0.1rem 0.1rem 0.9rem #000;
@@ -96,12 +96,8 @@ export default {
 }
 
 .card__profile-bio {
-  width: 90%;
-  max-height: 6rem;
-  overflow: hidden;
-  line-height: 1.4;
-  word-break: break-word;
   color: rgb(240, 248, 255);
+  font-size: 1.4rem;
 }
 
 .card__profile-location svg {
@@ -113,7 +109,7 @@ export default {
 .card__infos {
   width: 100%;
   display: flex;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.8rem;
   background-color: #0d1322;
   justify-content: space-between;
@@ -140,5 +136,29 @@ a {
   cursor: pointer;
   border-radius: 0.8rem;
   text-decoration: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .card__wrapper {
+    max-width: 37.5rem;
+    min-height: 40rem;
+    padding: 1rem 2rem;
+  }
+
+  .card__avatar {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .card__profile-bio {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.6rem;
+  }
+
+  .card__infos {
+    padding: 0.5rem 0;
+    justify-content: space-around;
+  }
 }
 </style>
