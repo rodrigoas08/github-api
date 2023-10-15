@@ -67,25 +67,24 @@ export default {
   <LoadingSpinner v-if="isLoading" />
   <div class="cards__wrapper" v-if="reposUser && !isLoading">
     <div class="cards__repo" v-for="repos in listRepositoryByStars()" :key="repos.id">
-      <p class="cards__repo-name"><IconRepo /> {{ repos.name }}</p>
-      <p class="cards__repo-bio" v-if="repos.description" :title="repos.description">
+      <p class="card__repo-name"><IconRepo /> {{ repos.name }}</p>
+      <p class="card__repo-bio" v-if="repos.description" :title="repos.description">
         {{ repos.description }}
       </p>
-      <div style="display: flex; gap: 2rem; font-size: 1.2rem">
-        <p class="cards__repo-language" v-if="repos.language">{{ repos.language }}</p>
-        <p class="cards__repo-stars"><IconStar /> {{ repos.stargazers_count }}</p>
+
+      <div class="card_repo-footer">
+        <p class="card__repo-language" v-if="repos.language">{{ repos.language }}</p>
+        <p class="card__repo-stars"><IconStar /> {{ repos.stargazers_count }}</p>
+        <BaseButton text="Acessar repositório" @handleFunction="openLink(repos.html_url)" />
       </div>
-      <BaseButton text="Acessar repositório" @handleFunction="openLink(repos.html_url)" />
     </div>
   </div>
 </template>
 
 <style scoped>
 .header {
-  height: 100%;
   display: grid;
-  padding: 0 2rem;
-  grid-template-rows: 0.2fr 1fr;
+  padding: 0 1rem;
 }
 
 .header a {
@@ -94,7 +93,6 @@ export default {
 
 .header h1 {
   color: rgb(240, 248, 255);
-  align-self: center;
   text-shadow: 0.1rem 0.4rem 0.3rem #000;
 }
 
@@ -102,61 +100,66 @@ export default {
   gap: 2rem;
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   margin: 0 auto;
   flex-wrap: wrap;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .cards__repo {
-  gap: 1rem;
-  flex-grow: 0;
+  gap: 0.5rem;
   width: 25rem;
   display: flex;
   height: 16rem;
   padding: 1rem;
-  flex-basis: 25rem;
-  border-radius: 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 0.8rem;
   flex-direction: column;
   background-color: #0d1631;
   justify-content: space-between;
   box-shadow: 0.1rem 0.2rem 0.8rem #000;
 }
 
-.cards__repo-name,
-.cards__repo-bio {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-size: 1.3rem;
-}
-
-.cards__repo-name {
-  color: #027afd;
-  font-weight: bold;
+.card__repo-name,
+.card__repo-bio {
+  font-size: 1.2rem;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.cards__repo-name svg {
-  top: 0.2rem;
-  position: relative;
+.card__repo-name {
+  font-size: 1.4rem;
+  color: #027afd;
+  font-weight: bold;
 }
 
-.cards__repo-name svg {
+.card__repo-name svg {
+  top: 0.2rem;
+  position: relative;
   margin-right: 0.4rem;
 }
 
-.cards__repo-stars {
+.card_repo-footer {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  align-items: center;
+}
+
+.card__repo-stars {
   gap: 0.5rem;
   display: flex;
   height: 1.4rem;
   color: #027afd;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   align-items: center;
 }
 
@@ -177,5 +180,41 @@ a {
 ::-webkit-scrollbar-thumb {
   border-radius: 0.8rem;
   background-color: #027afd;
+}
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 0 2rem;
+  }
+
+  .cards__wrapper {
+    gap: 2.9rem;
+    padding-inline: 2rem;
+    justify-content: flex-start;
+  }
+
+  .cards__repo {
+    width: 30rem;
+    height: 21rem;
+  }
+
+  .card__repo-name,
+  .card__repo-bio {
+    white-space: wrap;
+    overflow: hidden;
+    font-size: 1.4rem;
+  }
+
+  .card__repo-name {
+  font-size: 1.8rem;
+}
+
+  .card_repo-footer {
+    font-size: 1.6rem;
+  }
+
+  .card__repo-stars {
+    font-size: 1.6rem;
+  }
 }
 </style>
