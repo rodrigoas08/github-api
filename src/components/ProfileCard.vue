@@ -64,7 +64,7 @@ export default {
   height: auto;
   display: flex;
   color: black;
-  padding: 1rem 1rem;
+  padding: 2.4rem;
   border-radius: 0.8rem;
   flex-direction: column;
   background-color: #0d1631;
@@ -142,7 +142,6 @@ a {
   .card__wrapper {
     max-width: 37.5rem;
     min-height: 40rem;
-    padding: 1rem 2rem;
   }
 
   .card__avatar {
