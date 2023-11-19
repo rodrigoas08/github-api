@@ -5,8 +5,10 @@ import LoadingSpinner from '../components/LoadingSnipper.vue'
 import type { RepositoryResponse } from '../interfaces/User'
 import IconRepo from '../components/icons/IconRepo.vue'
 import IconStar from '../components/icons/IconStar.vue'
+import { useRouteStore } from '../stores/RouteStore'
 
 const profileStore = useProfileStore()
+const routerStore = useRouteStore()
 
 const initialRepository: RepositoryResponse = {
   description: '',
@@ -25,9 +27,8 @@ export default {
     IconStar
   },
   data() {
-    const reposUser: any = initialRepository
     return {
-      reposUser,
+      reposUser: initialRepository,
       user: profileStore.getProfile,
       isLoading: false
     }
@@ -53,6 +54,7 @@ export default {
     }
   },
   created() {
+    routerStore.updateRouteName(window.location.pathname)
     this.getRepos()
   }
 }
@@ -60,7 +62,9 @@ export default {
 
 <template>
   <div class="header">
-    <router-link :to="{ name: 'home' }">&#8617; Voltar</router-link>
+    <router-link :to="{ name: 'home' }">
+      <span style="font-size: 1.5rem">&#129184;</span> Voltar
+    </router-link>
     <h1 v-show="!isLoading">{{ user.name ? user.name : user.login }}</h1>
   </div>
 
@@ -83,15 +87,22 @@ export default {
 
 <style scoped>
 .header {
-  display: grid;
+  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 0 1rem;
 }
 
-.header a {
+.header a,
+span {
   text-shadow: 0.1rem 0.4rem 0.3rem #000;
+  width: fit-content;
 }
 
 .header h1 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   color: rgb(240, 248, 255);
   text-shadow: 0.1rem 0.4rem 0.3rem #000;
 }

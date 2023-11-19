@@ -4,12 +4,14 @@ import LoadingSpinner from '../components/LoadingSnipper.vue'
 import BaseButton from '../components/BaseButton.vue'
 import HTTP_STATUS_CODE from '../enums/HttpStatusCode'
 import { useProfileStore } from '../stores/ProfileStore'
+import { useRouteStore } from '../stores/RouteStore'
 // import { setActivePinia, createPinia } from 'pinia'
 import type { ProfileResponse } from '../interfaces/User'
 
 // const pinia = createPinia()
 // setActivePinia(pinia)
 const profileStore = useProfileStore()
+const routerStore = useRouteStore()
 
 export default {
   components: {
@@ -23,11 +25,12 @@ export default {
       inputValue: '',
       hasUser: false,
       isLoading: false,
-      warningText: ''
+      warningText: '',
+      routerName: routerStore.getRouteName
     }
   },
   methods: {
-    async fetchUserProfile(userName: string): Promise<void> {
+    async fetchUser(userName: string): Promise<void> {
       if (this.inputValue === '') {
         this.warningText = 'Por favor, digite um nome de usuário'
         return
@@ -67,9 +70,20 @@ export default {
       }
     },
     clearInput() {
-      this.inputValue = ''
-      this.hasUser = false
+      if (this.inputValue || this.hasUser) {
+        this.inputValue = ''
+        this.hasUser = false
+        this.warningText = ''
+      }
+    }
+  },
+  created() {
+    routerStore.getRouteName
+    if (this.routerName === '/repos') {
+      this.user = profileStore.getProfile
       this.warningText = ''
+      this.hasUser = true
+      this.isLoading = false
     }
   }
 }
@@ -85,10 +99,10 @@ export default {
         id="search"
         placeholder="Digite um nome de usuário"
         v-model="inputValue"
-        @keyup.enter="fetchUserProfile(inputValue)"
+        @keyup.enter="fetchUser(inputValue)"
       />
       <div class="button_wrapper">
-        <BaseButton text="Buscar" @handleFunction="fetchUserProfile(inputValue)" />
+        <BaseButton text="Buscar" @handleFunction="fetchUser(inputValue)" />
         <BaseButton text="Limpar" @handleFunction="clearInput" />
       </div>
     </div>
@@ -200,3 +214,4 @@ h2 {
   }
 }
 </style>
+../stores/RouteStore
