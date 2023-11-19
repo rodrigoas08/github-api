@@ -46,11 +46,13 @@ export default {
     openLink(url: string) {
       window.open(url, '_blank', 'noopener')
     },
-    listRepositoryByStars<T extends RepositoryResponse>(): T[] {
-      const list = this.reposUser.sort((a: any, b: any) => {
+    listRepositoryByStars(): Array<RepositoryResponse> {
+      const list: RepositoryResponse = this.reposUser
+      const reposArray = Object.values(list)
+      const sortedRepos = reposArray.sort((a: any, b: any) => {
         return b.stargazers_count - a.stargazers_count
       })
-      return list
+      return sortedRepos
     }
   },
   created() {
