@@ -69,10 +69,10 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--color-text);
-  background: #141c30;
+  background-color: #141c30;
   transition:
-    color 0.5s,
-    background-color 0.5s;
+    color 1.5s,
+    background-color 1.5s;
   font-size: 15px;
   font-family:
     system-ui,
